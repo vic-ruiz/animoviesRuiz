@@ -1,0 +1,12 @@
+h1{
+    color: $white;
+    margin: 2% 0%;
+    text-transform: uppercase;
+}
+
+h2{
+    @extend h1;
+}
+
+
+

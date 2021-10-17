@@ -1,0 +1,16 @@
+@import "base/colores";
+@import "base/fuentes";
+@import "base/mixins";
+
+html{
+    font-size: 16px;
+}
+
+body{
+    background-color: $negro;
+}
+
+@import "layout/titulos";
+@import "layout/navbar";
+@import "layout/footer";
+@import "layout/main";

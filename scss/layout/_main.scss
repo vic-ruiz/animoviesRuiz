@@ -1,0 +1,30 @@
+.pelicula{
+
+    div:hover{
+
+        div{
+            border: $red solid;
+        }
+         
+    }
+}
+
+.intro{
+    background: rgb(234,35,35);
+    background: -moz-linear-gradient(180deg, rgba(234,35,35,0.8365721288515406) 0%, rgba(129,22,22,0.9626225490196079) 75%);
+    background: -webkit-linear-gradient(180deg, rgba(234,35,35,0.8365721288515406) 0%, rgba(129,22,22,0.9626225490196079) 75%);
+    background: linear-gradient(180deg, rgba(234,35,35,0.8365721288515406) 0%, rgba(129,22,22,0.9626225490196079) 75%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ea2323",endColorstr="#811616",GradientType=1);
+    text-shadow: 1px 2px 13px $negro;
+    text-align: center;
+
+    p{
+       color: $white;
+       text-shadow: 1px 2px 13px $negro;
+    }
+}
+
+.buttonColor{
+    border: none;
+    background-color:$red !important;
+}

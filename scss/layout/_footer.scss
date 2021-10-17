@@ -1,0 +1,29 @@
+footer{
+    background: $white;
+
+    .nav-link{
+        font-style: $roboto;
+        color: $negro;
+        font-size: 1.2rem;
+    }
+
+    a.nav-link:hover{
+        color:$ligthgray;
+    }
+
+    img{
+        max-width: 100px;
+        max-width: 100px;
+    }
+
+    p{
+        color:$negro;
+        font-style: $roboto;
+        font-size: 0.8rem; 
+    }
+
+}
+
+
+
+

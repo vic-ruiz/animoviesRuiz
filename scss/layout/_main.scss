@@ -28,3 +28,20 @@
     border: none;
     background-color:$red !important;
 }
+
+
+.cart{
+    
+    p,.price,.cantidad,.total{
+        color:$white;
+        text-align: center;
+ 
+    }
+
+    .priceTotal{
+        background-color: $red;
+        color: $white;
+        text-align: center;
+    }
+   
+}

@@ -9,6 +9,10 @@ h1, h2 {
   margin: 2% 0%;
   text-transform: uppercase; }
 
+h5 {
+  text-align: center;
+  color: #fff; }
+
 .navHeader {
   background: #fff; }
   .navHeader .nav-link {
@@ -50,3 +54,12 @@ footer {
 .buttonColor {
   border: none;
   background-color: #ea2323 !important; }
+
+.cart p, .cart .price, .cart .cantidad, .cart .total {
+  color: #fff;
+  text-align: center; }
+
+.cart .priceTotal {
+  background-color: #ea2323;
+  color: #fff;
+  text-align: center; }

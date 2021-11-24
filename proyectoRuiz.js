@@ -1,79 +1,88 @@
+//Variables
 
-/* Clases */ 
-class Pelicula {
-    constructor(titulo, estreno, duracion, id, precio, cantidad) {
-        this.titulo = titulo;
-        this.estreno = estreno;
-        this.duracion = duracion;
+var catalogo = new Array
+const urlAPI = 'https://animechan.vercel.app/api/random'
+
+
+// Clases 
+class Producto {
+    constructor(id, nombre, volumen, precio, cantidad) {
         this.id = id;
+        this.nombre = nombre;
+        this.volumen = volumen;
         this.precio = precio;
         this.cantidad = cantidad
     }
 
-    descripcion(){
-        alert(`Se selecciono la pelicula ${this.titulo} estrenada en ${this.estreno}, con una duracion de ${this.duracion} minutos \nCon un precio de ${this.precio} pesos por entrada`);
+    crearCard(selector) {
+        $(selector).append(`
+            <div class=" col-5 col-md-4 col-lg-3 m-lg-1">
+                <div class="card producto${this.id}">
+                    <img src="images/producto${this.id}.webp" class="card-img " alt="${this.nombre}">
+                    <div class="card-body"> 
+                        <p>${this.nombre}</p>
+                        <p>Volumen: ${this.volumen}</p>
+                        <p>Precio: ${this.precio}</p>
+                    </div>
+                </div>
+            </div>`
+)
+        
     }
-
 
 }
 
-const pelicula1 = new Pelicula("Kimetsu no Yaiba: Mugen Ressha-hen",2020,117,1,600);
-const pelicula2 = new Pelicula("Akira", 1988, 124, 2, 700);
-const pelicula3 = new Pelicula("El viaje de Chihiro", 2001, 120, 3, 800);
+// Funciones 
 
-const catalogo = [pelicula1, pelicula2, pelicula3];
-
-/*Funciones */
-
-function elegirPelicula(pelicula){
-    let carroProductos = localStorage.getItem('peliculasEnCarro');
+function elegirProducto(producto){
+    let carroProductos = localStorage.getItem('productosEnCarro');
     carroProductos = JSON.parse(carroProductos);
 
     if (carroProductos != null){
 
-        if(carroProductos[pelicula.titulo] == undefined){
+        if(carroProductos[producto.id] == undefined){
             carroProductos = {
                 ...carroProductos,
-                [pelicula.titulo]: pelicula
+                [producto.id]: producto
             }
-            pelicula.cantidad = 0;
+            producto.cantidad = 0;
         }
-        carroProductos[pelicula.titulo].cantidad += 1;
+        carroProductos[producto.id].cantidad += 1;
 
     } else{
-        pelicula.cantidad = 1;
+        producto.cantidad = 1;
         carroProductos = {
-            [pelicula.titulo]: pelicula
+            [producto.id]: producto
         }
     }
         
-    localStorage.setItem("peliculasEnCarro", JSON.stringify(carroProductos));
+    localStorage.setItem("productosEnCarro", JSON.stringify(carroProductos));
 
 }
 
-function precioOrden(pelicula){
+function precioOrden(producto){
     let costoTotal = localStorage.getItem('costoTotal');
     
     if (costoTotal != null){
         costoTotal = parseInt(costoTotal);
-        localStorage.setItem("costoTotal",costoTotal + pelicula.precio);
+        localStorage.setItem("costoTotal",costoTotal + producto.precio);
     } else{
-        localStorage.setItem("costoTotal",pelicula.precio);
+        localStorage.setItem("costoTotal",producto.precio);
     }
     
 
 }
 
 function mostrarCompra(){
-    let carroProductos = localStorage.getItem("peliculasEnCarro");
+    let carroProductos = localStorage.getItem("productosEnCarro");
     carroProductos = JSON.parse(carroProductos);
     let costoTotal = localStorage.getItem('costoTotal');
     if(carroProductos){
-        $(".peliculasCompradas").html('')
+        $(".productosComprados").html('')
         Object.values(carroProductos).map(item =>{
-            $(".peliculasCompradas").append(
-                `<div class="peliculas col-3">
-                    <p>${item.titulo}</p>
+            $(".productosComprados").append(
+                `<div class="productos col-3">
+                    <p>${item.nombre} Volumen: ${item.volumen}</p>
                 </div>
                 <div class="price col-3">${item.precio}</div>
                 <div class="cantidad col-3">${item.cantidad}</div>
@@ -81,7 +90,7 @@ function mostrarCompra(){
 
         });
 
-        $(".peliculasCompradas").append(
+        $(".productosComprados").append(
             `<div class="totalPagar col-9">
                 <p>Total</p>
             </div>
@@ -93,35 +102,73 @@ function mostrarCompra(){
 mostrarCompra()
 
 function eliminarCarrito(){
-    localStorage.setItem("peliculasEnCarro",null);
+    localStorage.setItem("productosEnCarro",null);
     localStorage.setItem('costoTotal',"0");
-    $(".peliculasCompradas").html('');
+    $(".productosComprados").html('');
 }
 
 
-/* Eventos*/
-
-for (const pelicula of catalogo) {
-    $(".pelicula").append(`
-        <div class=" col-5 col-md-4 col-lg-3 m-lg-1">
-            <div class="card">
-                <img src="images/pelicula${pelicula.id}.webp" class="card-img pelicula${pelicula.id}" alt="${pelicula.titulo}">
-            </div>
-        </div>`
-    )}
+// Eventos
 
 
-
-for (let i = 0; i<catalogo.length; i++) {
-    $(`.pelicula${(i+1)}`).on("click", () => {
-        elegirPelicula(catalogo[i]);
-        precioOrden(catalogo[i]);
-        mostrarCompra();
-    })
-
-}
-
-$(".btnLimpiar").on("click", () => {
-    eliminarCarrito();
+$.ajax({
+    method: "GET",
+    url: "productos.json",
+    async: false,
+    success: function(respuesta){
+        for (const producto of respuesta) {
+            let prod = new Producto(producto.id,producto.nombre,producto.volumen,producto.precio);
+            catalogo.push(prod);
+        }
+    }
 })
 
+$(document).ready(()=> {
+
+    for (const producto of catalogo) {
+        producto.crearCard(".producto");
+    }
+
+
+    for (let i = 0; i<catalogo.length; i++) {
+        $(`.producto${(i+1)}`).on("click", () => {
+            elegirProducto(catalogo[i]);
+            precioOrden(catalogo[i]);
+            mostrarCompra();
+        })
+
+    }
+
+    $(".btnLimpiar").on("click", () => {
+        eliminarCarrito();
+    })
+
+    $(".btnComprar").on("click", () => {
+            
+        $(".cart").slideUp(1000);
+        $("section").append(`
+        <div class="row intro  justify-content-center mb-5 jumbotron jumbotron-fluid mensajeCompra" style="display:none">
+            <h1 class="col-12 display-4">GRACIAS POR SU COMPRA</h1>
+        </div>`
+        );
+
+        $.ajax({
+            method: "GET",
+            url: urlAPI,
+            success: function(respuesta){
+                $(".mensajeCompra").append(`
+                    <h2>Frase del dia </h2>
+                    <p>${respuesta.quote}</p>
+                    <p>"${respuesta.character}"</p>
+                    <p> En ${respuesta.anime}</p>`)
+            }
+        })
+
+        $(".mensajeCompra").fadeIn(2000)
+                            .delay(2000);;
+        eliminarCarrito()
+        
+    })
+
+    
+})

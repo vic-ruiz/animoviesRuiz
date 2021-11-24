@@ -36,7 +36,14 @@ footer {
     font-style: "Roboto", sans-serif;
     font-size: 0.8rem; }
 
-.pelicula div:hover div {
+.producto div {
+  background-color: #1e1e1e; }
+  .producto div p {
+    text-align: center;
+    color: #fff;
+    margin: 2% 0%; }
+
+.producto div:hover div {
   border: #ea2323 solid; }
 
 .intro {

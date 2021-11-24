@@ -1,0 +1,43 @@
+[
+{
+    "id": 1,
+    "nombre":"Sakura Card Captor",
+    "volumen":1,
+    "precio":550
+},
+
+{
+    "id": 2,
+    "nombre":"Sakura Card Captor",
+    "volumen":2,
+    "precio":600
+},
+
+{
+    "id": 3,
+    "nombre":"Neon Genesis Evangelion",
+    "volumen":1,
+    "precio":420
+},
+
+{
+    "id": 4,
+    "nombre":"Neon Genesis Evangelion",
+    "volumen":6,
+    "precio":420
+},
+
+{
+    "id": 5,
+    "nombre":"Attack on Titan",
+    "volumen":34,
+    "precio":600
+},
+
+{
+    "id": 6,
+    "nombre":"Chainsaw Man",
+    "volumen":1,
+    "precio":550
+}
+]

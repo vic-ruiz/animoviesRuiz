@@ -1,4 +1,12 @@
-.pelicula{
+.producto{
+    div{
+        background-color: $darkgray;
+        p{  
+            text-align: center;
+            color: $white;
+            margin: 2% 0%;
+        }
+    }
 
     div:hover{
 

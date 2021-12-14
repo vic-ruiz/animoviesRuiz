@@ -1,0 +1,23 @@
+.formPedido{
+    background-color: $ligthgray;
+    font-style: $roboto;
+    color: $negro;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+}
+
+.formButtons{
+    border-radius: 1rem;
+    margin: 1rem;
+    .enviarForm{
+        background-color: green;
+        color: $white
+    }
+
+    .limpiarForm{
+        background-color: $red;
+        color: $white;
+
+    }
+    
+}

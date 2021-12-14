@@ -9,6 +9,9 @@ h1, h2 {
   margin: 2% 0%;
   text-transform: uppercase; }
 
+h2 {
+  text-align: center; }
+
 h5 {
   text-align: center;
   color: #fff; }
@@ -35,6 +38,9 @@ footer {
     color: #0e1111;
     font-style: "Roboto", sans-serif;
     font-size: 0.8rem; }
+
+body {
+  padding-top: 7.7rem; }
 
 .producto div {
   background-color: #1e1e1e; }
@@ -70,3 +76,20 @@ footer {
   background-color: #ea2323;
   color: #fff;
   text-align: center; }
+
+.formPedido {
+  background-color: #b9b9b9;
+  font-style: "Roboto", sans-serif;
+  color: #0e1111;
+  font-size: 1.2rem;
+  border-radius: 1rem; }
+
+.formButtons {
+  border-radius: 1rem;
+  margin: 1rem; }
+  .formButtons .enviarForm {
+    background-color: green;
+    color: #fff; }
+  .formButtons .limpiarForm {
+    background-color: #ea2323;
+    color: #fff; }
